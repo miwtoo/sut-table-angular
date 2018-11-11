@@ -23,9 +23,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bulma/css/bulma.min.css",
+              "src/app/_timetable/_scss/timetable.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -124,4 +127,5 @@
     }
   },
   "defaultProject": "sut-table-angular"
+  
 }

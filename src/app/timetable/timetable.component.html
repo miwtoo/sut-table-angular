@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="timetable" #timetable></div>
+
+  <a class="button is-primary" (click)="popUp()">Add course!</a>
+  <a class="button is-primary" (click)="logTimetable()">logTimetable!</a>
+
+  <div class="modal" #modal>
+    <div class="modal-background" (click)="popUp()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">ค้นหารายวิชา</p>
+        <button class="delete" aria-label="close" (click)="popUp()"></button>
+
+      </header>
+      <section class="modal-card-body">
+        <form #findcourse="ngForm" (ngSubmit)="getAllData(findcourse.value)">
+          <div class="field is-horizontal ">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="รหัสวิชา" maxlength="6" [(ngModel)]='findcourse.courseid' name="courseid">
+                </div>
+              </div>
+              <div class="field has-addons">
+                <p class="control">
+                  <input class="input" type="text" placeholder="ปีการศึกษา" maxlength="4" [(ngModel)]='findcourse.year' name="year">
+                </p>
+                <p class="control">
+                  <span class="select">
+                    <select [(ngModel)]='findcourse.term' name="term">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </span>
+                </p>
+
+              </div>
+            </div>
+            <button class="button is-primary" type="submit"  #findbtn>ค้นหา</button>
+          </div>
+        </form>
+
+
+        <div class="content">
+          <ul *ngFor="let data of regDataAll">
+            <li>กลุ่ม {{data.number}} - วิชา {{data.name}} - หน่วยกิต {{data.credit}}</li> <a class="button is-primary " (click) = "addTimeTable(data)">เลือก</a>
+            <ul *ngFor="let time of data.times">
+              <li>วัน {{time.day}} - เวลา {{time.time}} - ห้อง {{time.room}}</li>
+            </ul>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
